@@ -11,7 +11,7 @@
  * @s1: entry string 1
  * @s2: entry string 2
  * Return: the difference
-*/
+ */
 int _strcmp(const char *s1, const char *s2)
 {
 	while (*s1 != '\0' && *s2 != '\0')
@@ -29,30 +29,35 @@ int _strcmp(const char *s1, const char *s2)
 
 /**
  * main - entry point of the program
- * Return: 0 on success
+ * @argc: number of command-line arguments
+ * @argv: array of command-line argument strings * Return: 0 on success
+ * Return: 0 on succes
  */
-int main(void)
+int main(int argc, char *argv[])
 {
 	DIR *dir;
 	struct dirent *read;
 
-	dir = opendir(".");
-	if (dir == NULL)
+	for (int i = 1; i < argc; i++)
 	{
-		perror("Error opening directory");
-		exit(EXIT_FAILURE);
-	}
-
-	while ((read = readdir(dir)) != NULL)
-	{
-		if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0
-			&& read->d_name[0] != '.')
+		dir = opendir(argv[i]);
+		if (dir == NULL)
 		{
-			printf("%s  ", read->d_name);
+			perror("Error opening directory");
+			exit(EXIT_FAILURE);
 		}
-	}
-	printf("\n");
+		printf("%s:\n", argv[i]);
+		while ((read = readdir(dir)) != NULL)
+		{
+			if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0
+			&& read->d_name[0] != '.')
+			{
+				printf("%s  ", read->d_name);
+			}
+		}
+		printf("\n");
 
-	closedir(dir);
+		closedir(dir);
+	}
 	return (0);
 }
