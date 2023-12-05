@@ -6,6 +6,12 @@
 
 #define MAX_NAME_LENGTH 256
 
+/**
+ * _strcmp - compare two strings
+ * @s1: entry string 1
+ * @s2: entry string 2
+ * Return: the difference
+*/
 int _strcmp(const char *s1, const char *s2)
 {
 	while (*s1 != '\0' && *s2 != '\0')
@@ -39,12 +45,13 @@ int main(void)
 
 	while ((read = readdir(dir)) != NULL)
 	{
-		if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
+		if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0
+			&& read->d_name[0] != '.')
 		{
 			printf("%s  ", read->d_name);
 		}
 	}
-		printf("\n");
+	printf("\n");
 
 	closedir(dir);
 	return (0);
