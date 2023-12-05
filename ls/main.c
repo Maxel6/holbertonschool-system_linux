@@ -6,16 +6,19 @@
 
 #define MAX_NAME_LENGTH 256
 
-int _strcmp(const char *s1, const char *s2) {
-    while (*s1 != '\0' && *s2 != '\0') {
-        if (*s1 != *s2) {
-            return (*s1 - *s2);
-        }
-        s1++;
-        s2++;
-    }
+int _strcmp(const char *s1, const char *s2)
+{
+	while (*s1 != '\0' && *s2 != '\0')
+	{
+		if (*s1 != *s2)
+		{
+			return (*s1 - *s2);
+		}
+		s1++;
+		s2++;
+	}
 
-    return (*s1 - *s2);
+	return (*s1 - *s2);
 }
 
 /**
@@ -27,7 +30,7 @@ int main(void)
 	DIR *dir;
 	struct dirent *read;
 
-	dir = opendir("..");
+	dir = opendir(".");
 	if (dir == NULL)
 	{
 		perror("Error opening directory");
@@ -38,9 +41,11 @@ int main(void)
 	{
 		if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0)
 		{
-			printf("%s\n", read->d_name);
+			printf("%s  ", read->d_name);
 		}
 	}
+		printf("\n");
+
 	closedir(dir);
 	return (0);
 }
