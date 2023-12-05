@@ -60,9 +60,9 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		for (i = 0; i < argc - 1; i++)
+		for (i = 1; i < argc; i++)
 		{
-			dir_name = argv[i + 1];
+			dir_name = argv[1];
 			printf("%s:", dir_name);
 			dir = opendir(dir_name);
 			if (dir == NULL)
