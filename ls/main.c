@@ -37,8 +37,9 @@ int main(int argc, char *argv[])
 {
 	DIR *dir;
 	struct dirent *read;
+	int i = 0;
 
-	for (int i = 1; i < argc; i++)
+	for (i = 1; i < argc; i++)
 	{
 		dir = opendir(argv[i]);
 		if (dir == NULL)
