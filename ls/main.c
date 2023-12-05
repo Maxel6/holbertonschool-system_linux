@@ -39,7 +39,7 @@ int main(void)
 
 	while ((read = readdir(dir)) != NULL)
 	{
-		if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0)
+		if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
 		{
 			printf("%s  ", read->d_name);
 		}
