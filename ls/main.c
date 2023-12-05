@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	{
 		for (i = 1; i < argc; i++)
 		{
-			dir_name = argv[1];
+			dir_name = argv[i];
 			printf("%s:", dir_name);
 			dir = opendir(dir_name);
 			if (dir == NULL)
