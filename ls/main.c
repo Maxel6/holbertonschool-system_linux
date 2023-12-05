@@ -38,20 +38,18 @@ int main(int argc, char *argv[])
 	DIR *dir;
 	struct dirent *read;
 	int i = 0;
-
-	for (i = 1; i < argc; i++)
+	char *dir_name = ".";
+	if (argc == 1)
 	{
-		dir = opendir(argv[i]);
+		dir = opendir(dir_name);
 		if (dir == NULL)
 		{
 			perror("Error opening directory");
 			exit(EXIT_FAILURE);
 		}
-		printf("%s:\n", argv[i]);
 		while ((read = readdir(dir)) != NULL)
 		{
-			if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0
-			&& read->d_name[0] != '.')
+			if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
 			{
 				printf("%s  ", read->d_name);
 			}
@@ -59,6 +57,30 @@ int main(int argc, char *argv[])
 		printf("\n");
 
 		closedir(dir);
+	}
+	else
+	{
+		for (i = 0; i < argc - 1; i++)
+		{
+			dir_name = argv[i + 1];
+			printf("%s:", dir_name);
+			dir = opendir(dir_name);
+			if (dir == NULL)
+			{
+				perror("Error opening directory");
+				exit(EXIT_FAILURE);
+			}
+			while ((read = readdir(dir)) != NULL)
+			{
+				if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
+				{
+					printf("%s  ", read->d_name);
+				}
+			}
+			printf("\n");
+
+			closedir(dir);
+		}
 	}
 	return (0);
 }
