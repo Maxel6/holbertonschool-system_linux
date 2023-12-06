@@ -46,7 +46,7 @@ int print_file(int argc, char ***argv)
 
 	for (i = 1; i < argc; i++)
 	{
-		if ((lstat((*argv)[i], &sb) != -1) && S_ISREG(sb.st_mode))
+		if ((*argv)[i] != NULL && (lstat((*argv)[i], &sb) != -1) && S_ISREG(sb.st_mode))
 		{
 			printf("%s\n", (*argv)[i]);
 		}
