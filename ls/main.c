@@ -91,10 +91,13 @@ int print_dir(int argc, char *program_name, char *dir_name, char *options)
         {
             if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
             {
-                printf("%s  ", read->d_name);
+                printf("%s", read->d_name);
                 if (options[0] == '1')
                 {
                     putchar('\n');
+                }
+                else{
+                    printf("  ");
                 }
             }
         }
