@@ -42,7 +42,7 @@ int print_file(int argc, char ***argv)
 {
 	struct stat sb;
 	int is_error = 0;
-	int i;
+	int i = 0;
 
 	for (i = 1; i < argc; i++)
 	{
@@ -71,7 +71,7 @@ int print_dir(int argc, char *program_name, char *dir_name)
 	dir = opendir(dir_name);
 	if (errno == EACCES)
 	{
-		fprintf(stderr, "%s: cannot open %s: ", program_name, dir_name);
+		fprintf(stderr, "%s: cannot open directory %s: ", program_name, dir_name);
 		perror("");
 		is_error = 1;
 	}
@@ -103,7 +103,7 @@ int process_args(int argc, char ***argv)
 	{
 		if (lstat((*argv)[i], &sb) == -1)
 		{
-			fprintf(stderr, "%s: cannot open directory %s: ", *argv[0], (*argv)[i]);
+			fprintf(stderr, "%s: cannot acess directory %s: ", *argv[0], (*argv)[i]);
 			perror("");
 			(*argv)[i] = NULL;
 			err = 1;
