@@ -46,15 +46,18 @@ int print_file(int argc, char ***argv)
     struct stat sb;
     int is_error = 0;
     int i = 0;
+    int flag = 0;
 
     for (i = 1; i < argc; i++)
     {
         if ((*argv)[i] != NULL && (lstat((*argv)[i], &sb) != -1) && S_ISREG(sb.st_mode))
         {
             printf("%s\n", (*argv)[i]);
+            flag++;
         }
     }
-    printf("\n");
+    if(flag)
+        printf("\n");
     return (is_error);
 }
 int is_dir(char *dir_name)
