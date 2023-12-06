@@ -58,12 +58,16 @@ int is_dir(char *dir_name)
 	struct stat sb;
 	int res = 0;
 
-	if ((lstat(dir_name, &sb) != -1) && S_ISDIR(sb.st_mode))
+	if (dir_name && (lstat(dir_name, &sb) != -1) && S_ISDIR(sb.st_mode))
 		res = 1;
 	return (res);
 }
 int print_dir(int argc, char *program_name, char *dir_name)
 {
+    if (!dir_name)
+    {
+        return (-1);
+    }
 	DIR *dir;
 	struct dirent *read;
 	int is_error = 0;
