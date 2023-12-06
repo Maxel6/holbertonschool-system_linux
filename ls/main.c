@@ -27,7 +27,6 @@ int _strcmp(const char *s1, const char *s2)
 
 	return (*s1 - *s2);
 }
-
 int is_file(char *dir_name)
 {
 	struct stat sb;
@@ -103,9 +102,13 @@ int process_args(int argc, char ***argv)
 	struct stat sb;
 	int i = 0;
 	int err = 0;
-
+    
 	for (i = 1; i < argc; i++)
 	{
+        if ((*argv)[i][0] == '-')
+        {
+            (*argv)[i] = NULL;
+        }
 		if (lstat((*argv)[i], &sb) == -1)
 		{
             fprintf(stderr, "%s: cannot access %s: ", *argv[0], (*argv)[i]);
