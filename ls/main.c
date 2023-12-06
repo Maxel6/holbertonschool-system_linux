@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
             dir_name = argv[1];
         }
         dir = opendir(dir_name);
-        if (errno = EPERM)
+        if (errno == EPERM)
         {
             fprintf(stderr, "%s: cannot open %s: ", argv[0], dir_name);
             perror("");
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
             dir_name = argv[i];
 
             dir = opendir(dir_name);
-            if (errno = EPERM)
+            if (errno == EPERM)
             {
                 fprintf(stderr, "%s: cannot open %s: ", argv[0], dir_name);
                 perror("");
