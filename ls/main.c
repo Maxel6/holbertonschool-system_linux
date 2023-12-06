@@ -103,7 +103,10 @@ int process_args(int argc, char ***argv)
 	{
 		if (lstat((*argv)[i], &sb) == -1)
 		{
-			fprintf(stderr, "%s: cannot acess directory %s: ", *argv[0], (*argv)[i]);
+            if (argc > 2)
+			    fprintf(stderr, "%s: cannot access directory %s: ", *argv[0], (*argv)[i]);
+            else
+                fprintf(stderr, "%s: cannot access %s: ", *argv[0], (*argv)[i]);
 			perror("");
 			(*argv)[i] = NULL;
 			err = 1;
