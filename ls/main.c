@@ -3,7 +3,6 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
 
 #define MAX_NAME_LENGTH 256
@@ -49,7 +48,8 @@ int main(int argc, char *argv[])
 		dir = opendir(dir_name);
 		if (dir == NULL)
 		{
-            fprintf(stderr, "%s: cannot access '%s': %s\n", argv[0], dir_name, strerror(errno));
+            fprintf(stderr, "%s: cannot access %s", argv[0], dir_name);
+            perror("");
             exit(EXIT_FAILURE);
 		}
 		while ((read = readdir(dir)) != NULL)
@@ -73,6 +73,8 @@ int main(int argc, char *argv[])
 			if (dir == NULL)
 			{
 				fprintf(stderr, "%s: cannot acces %s", argv[0], dir_name);
+                perror("");
+
 				exit(EXIT_FAILURE);
 			}
 			while ((read = readdir(dir)) != NULL)
