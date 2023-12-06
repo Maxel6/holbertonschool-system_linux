@@ -27,6 +27,7 @@ int _strcmp(const char *s1, const char *s2)
 
 	return (*s1 - *s2);
 }
+
 int is_file(char *dir_name)
 {
 	struct stat sb;
@@ -36,6 +37,7 @@ int is_file(char *dir_name)
 		res = 1;
 	return (res);
 }
+
 int print_file(int argc, char ***argv)
 {
 	struct stat sb;
@@ -64,7 +66,7 @@ int print_dir(int argc, char *program_name, char *dir_name)
 {
 	DIR *dir;
 	struct dirent *read;
-	int is_error;
+	int is_error = 0;
 
 	dir = opendir(dir_name);
 	if (errno == EACCES)
@@ -152,7 +154,7 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	if (is_error)
+	if (is_error != 0)
 		exit(EXIT_FAILURE);
 	return (0);
 }
