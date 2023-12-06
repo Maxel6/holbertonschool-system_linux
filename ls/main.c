@@ -64,14 +64,15 @@ int is_dir(char *dir_name)
 }
 int print_dir(int argc, char *program_name, char *dir_name)
 {
+
+	DIR *dir;
+	struct dirent *read;
+	int is_error = 0;
+    
     if (!dir_name)
     {
         return (-1);
     }
-	DIR *dir;
-	struct dirent *read;
-	int is_error = 0;
-
 	dir = opendir(dir_name);
 	if (errno == EACCES)
 	{
