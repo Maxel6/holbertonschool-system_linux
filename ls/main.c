@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
         dir = opendir(dir_name);
         if (errno == EACCES)
         {
-            fprintf(stderr, "%s: cannot open %s: ", argv[0], dir_name);
+            fprintf(stderr, "%s: cannot open directory %s: ", argv[0], dir_name);
             perror("");
             exit(EXIT_FAILURE);
         }
