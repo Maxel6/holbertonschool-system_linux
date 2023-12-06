@@ -5,7 +5,6 @@
 #include <string.h>
 #include <errno.h>
 
-
 #define MAX_NAME_LENGTH 256
 
 /**
@@ -16,17 +15,17 @@
  */
 int _strcmp(const char *s1, const char *s2)
 {
-	while (*s1 != '\0' && *s2 != '\0')
-	{
-		if (*s1 != *s2)
-		{
-			return (*s1 - *s2);
-		}
-		s1++;
-		s2++;
-	}
+    while (*s1 != '\0' && *s2 != '\0')
+    {
+        if (*s1 != *s2)
+        {
+            return (*s1 - *s2);
+        }
+        s1++;
+        s2++;
+    }
 
-	return (*s1 - *s2);
+    return (*s1 - *s2);
 }
 
 /**
@@ -37,71 +36,72 @@ int _strcmp(const char *s1, const char *s2)
  */
 int main(int argc, char *argv[])
 {
-	DIR *dir;
-	struct dirent *read;
-	int i = 0;
-	char *dir_name = ".";
-	if (argc <= 2)
-	{
-        if(argc == 2){
+    DIR *dir;
+    struct dirent *read;
+    int i = 0;
+    char *dir_name = ".";
+    if (argc <= 2)
+    {
+        if (argc == 2)
+        {
             dir_name = argv[1];
         }
-		dir = opendir(dir_name);
-		if(errno = EPERM)
+        dir = opendir(dir_name);
+        if (errno = EPERM)
         {
             fprintf(stderr, "%s: cannot open %s: ", argv[0], dir_name);
             perror("");
             exit(EXIT_FAILURE);
         }
         if (errno == ENOENT)
-		{
+        {
             fprintf(stderr, "%s: cannot access %s: ", argv[0], dir_name);
             perror("");
             exit(EXIT_FAILURE);
-		}
-		while ((read = readdir(dir)) != NULL)
-		{
-			if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
-			{
-				printf("%s  ", read->d_name);
-			}
-		}
-		printf("\n");
-
-		closedir(dir);
-	}
-	else
-	{
-		for (i = 1; i < argc; i++)
-		{
-			dir_name = argv[i];
-			
-			dir = opendir(dir_name);
-        if(errno = EPERM)
-        {
-            fprintf(stderr, "%s: cannot open %s: ", argv[0], dir_name);
-            perror("");
-            exit(EXIT_FAILURE);
         }
-			if (errno == ENOENT)
-			{
-				fprintf(stderr, "%s: cannot access %s: ", argv[0], dir_name);
+        while ((read = readdir(dir)) != NULL)
+        {
+            if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
+            {
+                printf("%s  ", read->d_name);
+            }
+        }
+        printf("\n");
+
+        closedir(dir);
+    }
+    else
+    {
+        for (i = 1; i < argc; i++)
+        {
+            dir_name = argv[i];
+
+            dir = opendir(dir_name);
+            if (errno = EPERM)
+            {
+                fprintf(stderr, "%s: cannot open %s: ", argv[0], dir_name);
+                perror("");
+                exit(EXIT_FAILURE);
+            }
+            if (errno == ENOENT)
+            {
+                fprintf(stderr, "%s: cannot access %s: ", argv[0], dir_name);
                 perror("");
 
-				exit(EXIT_FAILURE);
-			}
+                exit(EXIT_FAILURE);
+            }
             printf("%s:\n", dir_name);
-			while ((read = readdir(dir)) != NULL)
-			{
-				if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
-				{
-					printf("%s  ", read->d_name);
-				}
-			}
-			printf("\n\n");
+            while ((read = readdir(dir)) != NULL)
+            {
+                if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
+                {
+                    printf("%s  ", read->d_name);
+                }
+            }
+            printf("\n\n");
 
-			closedir(dir);
-		}
-	}
-	return (0);
+            closedir(dir);
+        }
+    }
+    return (0);
 }
