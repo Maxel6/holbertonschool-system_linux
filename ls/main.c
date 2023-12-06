@@ -152,11 +152,13 @@ int main(int argc, char *argv[])
 
     if ((argc - process.options_num) <= 2)
     {
-        if (argc == 2 && argv[i] != NULL)
+        for(i = 1; i < argc; i++)
         {
-            dir_name = argv[1];
+            if(argv[i] != NULL)
+            {
+                dir_name = argv[i];
+            }
         }
-        dir_name = ".";
 
         if (is_dir(dir_name))
             is_error += print_dir((argc - process.options_num), argv[0], dir_name, process.options);
