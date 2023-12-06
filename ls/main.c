@@ -33,7 +33,7 @@ int is_file(char *dir_name)
 	struct stat sb;
 	int res = 0;
 
-	if ((*argv)[i] != NULL && (lstat(dir_name, &sb) != -1) && S_ISREG(sb.st_mode))
+	if (dir_name && (lstat(dir_name, &sb) != -1) && S_ISREG(sb.st_mode))
 		res = 1;
 	return (res);
 }
