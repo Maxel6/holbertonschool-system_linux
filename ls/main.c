@@ -54,6 +54,7 @@ int print_file(int argc, char ***argv)
             printf("%s\n", (*argv)[i]);
         }
     }
+    printf("\n");
     return (is_error);
 }
 int is_dir(char *dir_name)
