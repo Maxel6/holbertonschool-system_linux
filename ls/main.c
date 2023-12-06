@@ -96,7 +96,8 @@ int print_dir(int argc, char *program_name, char *dir_name, char *options)
                 {
                     putchar('\n');
                 }
-                else{
+                else
+                {
                     printf("  ");
                 }
             }
@@ -162,13 +163,13 @@ int main(int argc, char *argv[])
                 dir_name = argv[i];
             }
         }
-
-        if (is_dir(dir_name))
-            is_error += print_dir((argc - process.options_num), argv[0], dir_name, process.options);
         if (is_file(dir_name))
         {
             printf("%s\n", dir_name);
         }
+        if (is_dir(dir_name))
+            is_error += print_dir((argc - process.options_num), argv[0], dir_name, process.options);
+
     }
     else
     {
