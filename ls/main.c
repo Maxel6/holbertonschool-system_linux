@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 		dir = opendir(dir_name);
 		if (dir == NULL)
 		{
-            fprintf(stderr, "%s: cannot access %s: ", argv[0], dir_name);
+            fprintf(stderr, "%s: cannot acces %s: ", argv[0], dir_name);
             perror("");
             exit(EXIT_FAILURE);
 		}
