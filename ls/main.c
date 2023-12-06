@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 		for (i = 1; i < argc; i++)
 		{
 			dir_name = argv[i];
-			printf("%s:", dir_name);
+			
 			dir = opendir(dir_name);
 			if (dir == NULL)
 			{
@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
 
 				exit(EXIT_FAILURE);
 			}
+            printf("%s:\n", dir_name);
 			while ((read = readdir(dir)) != NULL)
 			{
 				if (_strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0 && read->d_name[0] != '.')
