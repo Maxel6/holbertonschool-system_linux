@@ -87,6 +87,7 @@ int print_dir(int argc, char *program_name, char *dir_name)
 		}
 		printf("\n");
 	}
+	closedir(dir);
 	return (is_error);
 }
 
