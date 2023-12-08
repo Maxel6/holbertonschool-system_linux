@@ -220,6 +220,8 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (is_error != 0)
+    {
 		exit(EXIT_FAILURE);
-	return (0);
+    } 
+	return (1);
 }
