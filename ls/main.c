@@ -225,7 +225,6 @@ int main(int argc, char *argv[])
                 {
                     if (is_dir(dir_name))
                         is_error += print_dir((argc - process.options_num), argv[0], dir_name, process.options);
-                    printf("\n");
                 }
             }
         }
