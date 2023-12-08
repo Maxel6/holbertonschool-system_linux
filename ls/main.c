@@ -111,7 +111,7 @@ int print_dir(int argc, char *program_name, char *dir_name, char *options)
             {
                 printf("%s", read->d_name);
             }
-            if(options[0] == 'A' && _strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0)
+            else if(options[0] == 'A' && _strcmp(read->d_name, ".") != 0 && _strcmp(read->d_name, "..") != 0)
             {
                 printf("%s", read->d_name);
             }
@@ -228,6 +228,10 @@ int main(int argc, char *argv[])
                 }
             }
         }
+    }
+    if(is_error)
+    {
+        exit(EXIT_FAILURE);
     }
     return (0);
 }
