@@ -77,7 +77,6 @@ void print_all_dir(struct dirent *read, char *options)
 		putchar('\n');
 	else
 		printf("  ");
-
 }
 int print_dir(int argc, char *program_name, char *dir_name, char *options)
 {
@@ -219,9 +218,6 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	if (is_error != 0)
-    {
 		exit(EXIT_FAILURE);
-    } 
-	return (1);
+        return (0);
 }
