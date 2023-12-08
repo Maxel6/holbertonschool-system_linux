@@ -182,9 +182,10 @@ int main(int argc, char *argv[])
 
 	if ((argc - process.options_num) == 2)
 	{
+        dir_name = "";
 		for (i = 1; i < argc; i++)
 		{
-			dir_name = "";
+			
 			if (argv[i] != NULL)
 			{
 				dir_name = argv[i];
